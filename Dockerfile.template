@@ -1,0 +1,41 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-alpine-node:slim
+
+# Install packages.
+RUN apk add --update \
+        --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+        build-base \
+        git \
+        i2c-tools \
+        python \
+        python-dev \
+        py-pip \
+        py-smbus \
+        py-psutil \
+        eudev-dev \
+        && pip install --upgrade pip \
+        && rm -rf /var/cache/apk/*
+
+RUN pip install spidev RPi.GPIO python-uinput
+
+RUN git clone https://github.com/pimoroni/dot3k.git && cd dot3k/library && python ./setup.py install
+
+# Save source folder
+RUN printf "%s\n" "${PWD##}" > SOURCEFOLDER
+
+# Move to /usr/src/app
+WORKDIR /usr/src/app
+
+# Move package to filesystem
+COPY "$SOURCEFOLDER/app/package.json" ./
+
+# Install NodeJS dependencies via NPM
+RUN JOBS=MAX npm i --unsafe-perm --production && npm cache clean
+
+# Start app
+CMD ["bash", "/usr/src/app/start.sh"]
+
+# Move app to filesystem
+COPY "$SOURCEFOLDER/app" ./
+
+## uncomment if you want systemd
+ENV INITSYSTEM on
