@@ -18,7 +18,7 @@
         // Set all backlight LEDs to an amber color.
         dothat.backlight.setToRGB(255, 193, 7);
         dothat.lcd.clear();
-        self.writeOnDisplay('Resin.io');
+        self.writeOnDisplay('Resin.io - loading...');
         dothat.lcd.setCursorPosition(0, 1);
 
         dothat.touch.on('up', function() {
@@ -86,6 +86,10 @@
 
     lcd.prototype.barGraph = function (percentage) {
       dothat.barGraph.setByPercentage(percentage);
+    };
+
+    lcd.prototype.setColor = function (r,g,b) {
+      dothat.backlight.setToRGB(r, g, b);
     };
 
     module.exports = lcd();
