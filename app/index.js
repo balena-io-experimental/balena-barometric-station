@@ -3,7 +3,7 @@
 {
     'use strict';
     const lcd = require(__dirname + '/libs/lcd.js');
-    const menu = require(__dirname + '/libs/menu.js');
+    const supervisor = require(__dirname + '/libs/supervisor.js');
     const chip = (process.env.BAROMETER_CHIP == null) ? 'bmp280' : process.env.BAROMETER_CHIP;
     const barometer = require(__dirname + '/libs/' + chip + '.js');
     let currentVolume = 0;
@@ -12,6 +12,13 @@
     barometer.start();
 
     lcd.writeOnDisplay(0, 0, 'Barometer ready');
+
+    supervisor.start(500, ()=> {
+           supervisorClient.on('status', (status) => {
+             console.log('Supervisor status update: ' + status);
+               lcd.writeOnDisplay(0, 3, status);
+           });
+       });
 
     lcd.on('button', (btn) => {
         console.log('A button has been pressed: ', btn);
