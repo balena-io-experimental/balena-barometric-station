@@ -11,7 +11,7 @@
     lcd.init();
     barometer.start();
 
-    lcd.writeOnDisplay(0, 0, 'Resin.io Barometer');
+    lcd.writeOnDisplay(0, 0, 'Barometer ready');
 
     lcd.on('button', (btn) => {
         console.log('A button has been pressed: ', btn);
