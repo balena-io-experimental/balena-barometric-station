@@ -33,8 +33,8 @@
         }
     });
 
-    barometer.on('error',() => {
-      console.log(error);
+    barometer.on('error',(err) => {
+      console.log(err);
     });
 
     barometer.on('reading', (data) => {
