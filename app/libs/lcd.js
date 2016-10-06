@@ -18,48 +18,47 @@
         // Set all backlight LEDs to an amber color.
         dothat.backlight.setToRGB(255, 193, 7);
         dothat.lcd.clear();
-        self.writeOnDisplay('Resin.io - loading...');
-        dothat.lcd.setCursorPosition(0, 1);
+        self.writeOnDisplay(0,0,'Resin.io - loading...');
 
         dothat.touch.on('up', function() {
-          if (parseInt(process.env.FLIP)) {
-              self.emit('button', 'down');
-          } else {
-              self.emit('button', 'up');
-          }
+            if (parseInt(process.env.FLIP)) {
+                self.emit('button', 'down');
+            } else {
+                self.emit('button', 'up');
+            }
         });
 
         /**
          * Handles the 'down' event of the touch component.
          */
         dothat.touch.on('down', function() {
-          if (parseInt(process.env.FLIP)) {
-              self.emit('button', 'up');
-          } else {
-              self.emit('button', 'down');
-          }
+            if (parseInt(process.env.FLIP)) {
+                self.emit('button', 'up');
+            } else {
+                self.emit('button', 'down');
+            }
         });
 
         /**
          * Handles the 'left' event of the touch component.
          */
         dothat.touch.on('left', function() {
-          if (parseInt(process.env.FLIP)) {
-              self.emit('button', 'right');
-          } else {
-              self.emit('button', 'left');
-          }
+            if (parseInt(process.env.FLIP)) {
+                self.emit('button', 'right');
+            } else {
+                self.emit('button', 'left');
+            }
         });
 
         /**
          * Handles the 'right' event of the touch component.
          */
         dothat.touch.on('right', function() {
-          if (parseInt(process.env.FLIP)) {
-              self.emit('button', 'left');
-          } else {
-              self.emit('button', 'right');
-          }
+            if (parseInt(process.env.FLIP)) {
+                self.emit('button', 'left');
+            } else {
+                self.emit('button', 'right');
+            }
         });
 
         /**
@@ -77,19 +76,21 @@
         });
     };
 
-    lcd.prototype.writeOnDisplay = function(value) {
-        dothat.lcd.clear();
-        dothat.lcd.setCursorPosition(0, 1);
+    lcd.prototype.writeOnDisplay = function(x, y, value) {
+        dothat.lcd.setCursorPosition(x, y);
         dothat.lcd.write(value);
-
     };
 
-    lcd.prototype.barGraph = function (percentage) {
-      dothat.barGraph.setByPercentage(percentage);
+    lcd.prototype.barGraph = function(percentage) {
+        dothat.barGraph.setByPercentage(percentage);
     };
 
-    lcd.prototype.setColor = function (r,g,b) {
-      dothat.backlight.setToRGB(r, g, b);
+    lcd.prototype.setColor = function(r, g, b) {
+        dothat.backlight.setToRGB(r, g, b);
+    };
+
+    lcd.prototype.clear = function() {
+        dothat.lcd.clear();
     };
 
     module.exports = lcd();
