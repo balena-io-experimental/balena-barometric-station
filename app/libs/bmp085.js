@@ -19,7 +19,7 @@
     barometer.prototype.start = function() {
         let self = this;
         self.polling = setInterval(() => {
-            barometer.read((data) => {
+            bmp085.read((data) => {
                 self.emit('reading', {
                     'pressure': data.pressure,
                     'temperature': data.temperature
