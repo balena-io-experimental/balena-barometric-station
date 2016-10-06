@@ -11,6 +11,7 @@
     lcd.init();
     barometer.start();
 
+    lcd.clear();
     lcd.writeOnDisplay(0, 0, 'Barometer ready');
 
     supervisor.start(500, ()=> {
@@ -24,7 +25,7 @@
         console.log('A button has been pressed: ', btn);
         lcd.setColor(244,244,244);
         setTimeout(function blink() {
-          lcd.setColor(colorTemp.r,colorTemp.g,colorTemp.b);
+          lcd.setColor(color.r,color.g,color.b);
         },200);
         switch (btn) {
             case "up":
