@@ -14,7 +14,7 @@
     lcd.writeOnDisplay(0, 0, 'Barometer ready');
 
     supervisor.start(500, ()=> {
-           supervisorClient.on('status', (status) => {
+           supervisor.on('status', (status) => {
              console.log('Supervisor status update: ' + status);
                lcd.writeOnDisplay(0, 3, status);
            });
