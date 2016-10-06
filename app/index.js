@@ -16,7 +16,7 @@
     supervisor.start(500, ()=> {
            supervisor.on('status', (status) => {
              console.log('Supervisor status update: ' + status);
-               lcd.writeOnDisplay(0, 3, status);
+               lcd.writeOnDisplay(0, 2, status);
            });
        });
 
