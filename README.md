@@ -1,6 +1,8 @@
 # resin-barometric-station
 A smart barometric station!
 
+![barometric station](https://raw.githubusercontent.com/resin-io-playground/resin-barometric-station/master/pics/2016-10-06.jpg)
+
 ### Parts
 * [Display-O-Tron HAT](https://shop.pimoroni.com/products/display-o-tron-hat)
 * [Adafruit BMP280 I2C or SPI Barometric Pressure & Altitude Sensor](https://shop.pimoroni.com/products/adafruit-bmp280-i2c-or-spi-barometric-pressure-altitude-sensor)
