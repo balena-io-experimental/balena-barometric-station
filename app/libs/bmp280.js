@@ -21,7 +21,7 @@
                 }
             } else {
                 self.polling = setInterval(() => {
-                    barometer.readPressureAndTemparature(function(err, p, t) {
+                    bmp280.readPressureAndTemparature(function(err, p, t) {
                         if (err) {
                             self.emit('error', err)
                         } else {

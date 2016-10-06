@@ -4,10 +4,9 @@
     'use strict';
     const lcd = require(__dirname + '/libs/lcd.js');
     const menu = require(__dirname + '/libs/menu.js');
-    const barometer = require(__dirname + '/libs/barometer.js');
-
+    const chip = (process.env.BAROMETER_CHIP == null) ? 'bmp280' : process.env.BAROMETER_CHIP;
+    const barometer = require(__dirname + '/libs/' + chip + '.js');
     let currentVolume = 0;
-
     lcd.init();
     barometer.start();
 
