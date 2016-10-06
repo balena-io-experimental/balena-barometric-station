@@ -21,8 +21,8 @@
         self.polling = setInterval(() => {
             bmp085.read((data) => {
                 self.emit('reading', {
-                    'pressure': data.pressure,
-                    'temperature': data.temperature
+                    'pressure': data.pressure.toFixed(2),
+                    'temperature': data.temperature.toFixed(2)
                 });
             });
         }, 1000);

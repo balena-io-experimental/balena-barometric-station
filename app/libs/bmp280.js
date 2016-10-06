@@ -26,8 +26,8 @@
                             self.emit('error', err)
                         } else {
                             self.emit('reading', {
-                                'pressure': p,
-                                'temperature': t
+                                'pressure': p.toFixed(2),
+                                'temperature': t.toFixed(2)
                             });
                         }
                     });
