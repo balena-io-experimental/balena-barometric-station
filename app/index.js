@@ -22,7 +22,10 @@
 
     lcd.on('button', (btn) => {
         console.log('A button has been pressed: ', btn);
-
+        lcd.setColor(244,244,244);
+        setTimeout(function blink() {
+          lcd.setColor(colorTemp.r,colorTemp.g,colorTemp.b);
+        },200);
         switch (btn) {
             case "up":
 

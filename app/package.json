@@ -1,26 +1,27 @@
 {
-    "name": "resin-barometric-station",
-    "version": "0.0.1",
-    "description": "A smart barometric station!",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/resin-io-playground/resin-barometric-station.git"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Carlo Maria Curinga",
-    "license": "Apache-2.0",
-    "bugs": {
-        "url": "https://github.com/resin-io-playground/resin-barometric-station/issues"
-    },
-    "homepage": "https://github.com/resin-io-playground/resin-barometric-station#readme",
-    "dependencies": {
-        "async": "^2.0.1",
-        "bmp085": "^0.4.0",
-        "node-bmp280": "^0.1.2",
-        "jvsdisplayotron": "^1.1.0",
-        "lodash": "^4.16.3"
-    }
+  "name": "resin-barometric-station",
+  "version": "0.0.1",
+  "description": "A smart barometric station!",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resin-io-playground/resin-barometric-station.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlo Maria Curinga",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/resin-io-playground/resin-barometric-station/issues"
+  },
+  "homepage": "https://github.com/resin-io-playground/resin-barometric-station#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "bmp085": "^0.4.0",
+    "jvsdisplayotron": "^1.1.0",
+    "lodash": "^4.16.3",
+    "node-bmp280": "^0.1.2",
+    "request": "^2.75.0"
+  }
 }
