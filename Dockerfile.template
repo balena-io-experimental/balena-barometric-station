@@ -1,7 +1,10 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-alpine-node:slim
 
+# Move to /usr/src/app
+WORKDIR /usr/src/app
+
 # Install packages.
-RUN apk add --update \
+RUN apk add --no-cache \
         --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
         build-base \
         git \
@@ -12,30 +15,26 @@ RUN apk add --update \
         py-smbus \
         py-psutil \
         eudev-dev \
-        && pip install --upgrade pip \
-        && rm -rf /var/cache/apk/*
+        && pip install --upgrade pip
 
 RUN pip install spidev RPi.GPIO python-uinput
 
-RUN git clone https://github.com/pimoroni/dot3k.git && cd dot3k/library && python ./setup.py install
-
-# Save source folder
-RUN printf "%s\n" "${PWD##}" > SOURCEFOLDER
-
-# Move to /usr/src/app
-WORKDIR /usr/src/app
+RUN git clone --depth=1 https://github.com/pimoroni/dot3k.git && \
+    cd dot3k/library && \
+    python ./setup.py install && \
+    cd ../../ && rm -rf dot3k
 
 # Move package to filesystem
-COPY "$SOURCEFOLDER/app/package.json" ./
+COPY ./app/package.json ./
 
 # Install NodeJS dependencies via NPM
 RUN JOBS=MAX npm i --unsafe-perm --production && npm cache clean
 
-# Start app
-CMD ["bash", "/usr/src/app/start.sh"]
-
 # Move app to filesystem
-COPY "$SOURCEFOLDER/app" ./
+COPY /app ./
 
 ## uncomment if you want systemd
 ENV INITSYSTEM on
+
+# Start app
+CMD ["bash", "/usr/src/app/start.sh"]
