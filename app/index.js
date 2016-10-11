@@ -14,10 +14,22 @@
     lcd.clear();
     lcd.writeOnDisplay(0, 0, 'Barometer ready');
 
+    // right padding s with c to a total of n chars
+    function padding_right(s, c, n) {
+      if (! s || ! c || s.length >= n) {
+        return s;
+      }
+      var max = (n - s.length)/c.length;
+      for (var i = 0; i < max; i++) {
+        s += c;
+      }
+      return s;
+    }
+
     supervisor.start(500, ()=> {
            supervisor.on('status', (status) => {
              console.log('Supervisor status update: ' + status);
-               lcd.writeOnDisplay(0, 2, status);
+               lcd.writeOnDisplay(0, 2, padding_right(status, ' ', 16));
            });
        });
 
